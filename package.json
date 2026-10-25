@@ -1,0 +1,9 @@
+{
+  "name": "bhanu-pratap-portfolio",
+  "version": "1.0.0",
+  "description": "Personal AI & Software Engineering Portfolio - Bhanu Pratap",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}
