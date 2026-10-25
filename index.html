@@ -99,7 +99,7 @@ h3.sub{font:700 1rem var(--sans);margin:0 0 .75rem}
 .tool-form button:hover{background:var(--blue)}
 
 /* weather widget specific */
-.weather-body{height:16.5rem;overflow-y:auto;padding:1.2rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.weather-body{min-height:19.5rem;overflow-y:auto;padding:1.2rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
 .weather-placeholder{color:var(--muted);font-size:.95rem;line-height:1.5;max-width:22rem;margin:auto 0}
 .weather-result{width:100%;text-align:left;display:flex;flex-direction:column;gap:.8rem;animation:fadeIn 0.25s ease-in}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
@@ -250,22 +250,18 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;color
 
       <!-- Panel 2: Weather Forecaster -->
       <div class="panel">
-        <div class="panel-head">Live Weather Forecaster<span>Real-time weather for any city</span></div>
+        <div class="panel-head">Live Weather Forecaster<span>Ask about any city</span></div>
         <div id="weatherBody" class="weather-body" aria-live="polite">
-          <p class="weather-placeholder">🌍 <strong>Which city?</strong><br>Enter any city name below to see current temperature, weather conditions, and forecast.</p>
-        </div>
-        <div class="prompts" role="group" aria-label="Popular quick cities">
-          <button type="button" class="weather-quick" data-city="Jaipur">Jaipur</button>
-          <button type="button" class="weather-quick" data-city="Delhi">Delhi</button>
-          <button type="button" class="weather-quick" data-city="Mumbai">Mumbai</button>
-          <button type="button" class="weather-quick" data-city="Bengaluru">Bengaluru</button>
-          <button type="button" class="weather-quick" data-city="London">London</button>
-          <button type="button" class="weather-quick" data-city="Tokyo">Tokyo</button>
+          <div class="weather-placeholder">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">🌍</span>
+            <strong style="font-size: 1.15rem; color: var(--ink);">Which city?</strong>
+            <p style="margin: 0.35rem 0 0; color: var(--muted); font-size: 0.92rem;">Enter any city name below to see the current temperature, conditions, and forecast.</p>
+          </div>
         </div>
         <form id="weatherForm" class="tool-form">
           <label class="visually-hidden" for="weatherInput">Which city?</label>
-          <input id="weatherInput" type="text" placeholder="Which city? (e.g. Jaipur, London, Tokyo)..." maxlength="100" autocomplete="off" required />
-          <button type="submit">Forecast</button>
+          <input id="weatherInput" type="text" placeholder="Which city? (e.g. Delhi, Jaipur, London)..." maxlength="100" autocomplete="off" required />
+          <button type="submit">Get Weather</button>
         </form>
       </div>
 
@@ -452,15 +448,6 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;color
     weatherInput.value = "";
     fetchWeather(val);
   });
-
-  document.querySelectorAll(".weather-quick").forEach(function(btn) {
-    btn.addEventListener("click", function() {
-      fetchWeather(btn.dataset.city);
-    });
-  });
-
-  // Pre-load default city weather for a lively immediate display
-  fetchWeather("Jaipur");
 })();
 </script>
 </body>
